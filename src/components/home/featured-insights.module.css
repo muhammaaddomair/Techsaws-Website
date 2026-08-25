@@ -1,0 +1,284 @@
+.section {
+  background: #fff;
+  color: #000;
+  padding: 76px 32px 92px;
+}
+
+.inner {
+  width: min(100%, 1440px);
+  margin-inline: auto;
+}
+
+.heading {
+  margin: 0;
+  color: rgb(0 0 0 / 42%);
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.045em;
+  word-spacing: 0.3em;
+}
+
+.heading span {
+  color: #000;
+}
+
+.intro {
+  margin-bottom: 96px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.card {
+  position: relative;
+  min-height: 510px;
+  display: grid;
+  grid-template-rows: 64% 36%;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #252525;
+  color: #fff;
+  isolation: isolate;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 8%);
+  transition: box-shadow 420ms ease;
+}
+
+.visual {
+  position: relative;
+  overflow: hidden;
+  transition:
+    opacity 420ms ease,
+    filter 420ms ease;
+}
+
+.visualImage {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.visual::before,
+.visual::after {
+  content: "";
+  position: absolute;
+}
+
+.visual::before {
+  width: 58%;
+  aspect-ratio: 1;
+  left: 21%;
+  top: 20%;
+  border: 1px solid rgb(255 255 255 / 48%);
+  transform: rotate(45deg);
+  box-shadow: 0 0 55px rgb(216 73 235 / 48%);
+}
+
+.visual::after {
+  inset: 16%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(255 255 255 / 28%), transparent 66%);
+  filter: blur(12px);
+}
+
+.artOne {
+  background: radial-gradient(circle at 50% 38%, #d453e3, transparent 28%), linear-gradient(145deg, #24003c, #78006b);
+}
+
+.artTwo {
+  background: radial-gradient(circle at 50% 50%, #59e2d2, transparent 22%), radial-gradient(circle at 68% 35%, #d56aed, transparent 32%), linear-gradient(150deg, #170b48, #483bd1 55%, #160d31);
+}
+
+.artThree {
+  background: radial-gradient(circle at 48% 35%, #d8188a, transparent 25%), radial-gradient(circle at 53% 67%, #5c27cf, transparent 27%), #171126;
+}
+
+.artFour {
+  background: radial-gradient(ellipse at 52% 60%, #f451e1, transparent 14%), radial-gradient(circle at 62% 42%, #274dca, transparent 30%), linear-gradient(110deg, #09173d 55%, #f5f4f2 56%);
+}
+
+.artFive {
+  background: repeating-linear-gradient(90deg, transparent 0 24%, rgb(255 255 255 / 5%) 24% 25%), repeating-linear-gradient(0deg, transparent 0 24%, rgb(255 255 255 / 5%) 24% 25%), linear-gradient(145deg, #1e0a48, #62336f);
+}
+
+.artSix {
+  background: radial-gradient(circle at 25% 25%, #34aaf2 0 2%, transparent 3%), radial-gradient(circle at 70% 64%, #72e0ea 0 3%, transparent 4%), linear-gradient(145deg, #0b215a, #244db4);
+}
+
+.artSeven {
+  background: radial-gradient(ellipse at 50% 78%, #1864d5, transparent 26%), repeating-linear-gradient(90deg, transparent 0 17%, rgb(42 218 255 / 10%) 17% 18%), linear-gradient(145deg, #250340, #022765);
+}
+
+.artEight {
+  background: radial-gradient(ellipse at 58% 68%, #f34942, transparent 16%), radial-gradient(ellipse at 35% 75%, #a5189c, transparent 22%), linear-gradient(160deg, #120004, #401034);
+}
+
+.artNine {
+  background: radial-gradient(circle at 50% 42%, #ea4bd9, transparent 20%), radial-gradient(circle at 32% 68%, #296ef1, transparent 26%), linear-gradient(145deg, #10102d, #3d116c);
+}
+
+.visualNumber {
+  position: absolute;
+  z-index: 1;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(255 255 255 / 76%);
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.08em;
+}
+
+.summary {
+  position: relative;
+  z-index: 1;
+  padding: 25px 24px 28px;
+  background: #272727;
+  transition:
+    opacity 420ms ease;
+}
+
+.type {
+  display: block;
+  margin-bottom: 14px;
+  color: rgb(255 255 255 / 56%);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.035em;
+}
+
+.hoverContent {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 24px 24px;
+  background: linear-gradient(160deg, #fb5a20 0%, #e35b8d 50%, #cf54e5 100%);
+  opacity: 0;
+  transition: opacity 480ms ease;
+}
+
+.hoverContent .type {
+  color: rgb(255 255 255 / 88%);
+}
+
+.hoverContent h3 {
+  font-size: 20px;
+  line-height: 1.22;
+}
+
+.hoverContent p {
+  margin: 18px 0 0;
+  color: rgb(255 255 255 / 84%);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.readMore {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: auto;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.readMoreLabel {
+  margin-right: 12px;
+}
+
+.line {
+  position: relative;
+  height: 1px;
+  flex: 1;
+  background: rgb(255 255 255 / 72%);
+  transform-origin: left;
+  transform: scaleX(0.72);
+  transition: transform 720ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.line::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  transform: translateY(-50%) rotate(45deg);
+  transform-origin: center;
+}
+
+.card:hover,
+.card:focus-visible {
+  box-shadow: 0 28px 58px rgb(63 17 78 / 24%);
+  outline: none;
+}
+
+.card:hover .visual,
+.card:hover .summary,
+.card:focus-visible .visual,
+.card:focus-visible .summary {
+  opacity: 0;
+  filter: saturate(1.08);
+}
+
+.card:hover .visualImage,
+.card:focus-visible .visualImage {
+  transform: scale(1.04);
+}
+
+.card:hover .hoverContent,
+.card:focus-visible .hoverContent {
+  opacity: 1;
+}
+
+.card:hover .line,
+.card:focus-visible .line {
+  transform: scaleX(1);
+}
+
+@media (max-width: 1080px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .section {
+    padding: 60px 16px 72px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: 480px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .visual,
+  .summary,
+  .hoverContent,
+  .line {
+    transition: none;
+  }
+}

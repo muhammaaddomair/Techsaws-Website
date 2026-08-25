@@ -1,0 +1,1715 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@theme inline {
+  --color-background: var(--background);
+
+  --font-manrope: var(--font-manrope);
+  --font-inter: var(--font-inter);
+
+  --color-heading: var(--heading);
+  --color-sub-heading: var(--sub-heading);
+  --color-foreground: var(--foreground);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+}
+
+:root {
+  --background: oklch(0.12 0 0);
+
+  --foreground: oklch(0.94 0 0);
+
+  --heading: oklch(0.98 0 0);
+  --sub-heading: oklch(0.72 0 0);
+
+  --card: oklch(0.16 0 0);
+  --card-foreground: oklch(0.94 0 0);
+
+  --popover: oklch(0.16 0 0);
+  --popover-foreground: oklch(0.94 0 0);
+
+  --primary: oklch(0.58 0.2 258);
+  --primary-hover: oklch(0.64 0.2 258);
+  --primary-foreground: oklch(1 0 0);
+
+  --secondary: oklch(0.2 0 0);
+  --secondary-hover: oklch(0.25 0 0);
+  --secondary-foreground: oklch(0.94 0 0);
+
+  --accent: #e62e2d;
+  --accent-hover: #d72625;
+  --accent-foreground: oklch(0.94 0 0);
+
+  --muted: oklch(0.2 0 0);
+  --muted-foreground: oklch(0.65 0 0);
+
+  --border: oklch(0.28 0 0);
+  --input: oklch(0.24 0 0);
+
+  --ring: oklch(0.58 0.2 258);
+
+  --destructive: oklch(0.62 0.24 25);
+  --destructive-hover: oklch(0.56 0.24 25);
+  --destructive-foreground: oklch(0.985 0 0);
+}
+
+@layer base {
+  * {
+    @apply m-0 p-0 box-border scroll-smooth border-border;
+  }
+
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-manrope text-heading font-bold tracking-tight;
+  }
+
+  p {
+    @apply text-foreground leading-relaxed;
+  }
+
+  small {
+    @apply text-sm text-muted-foreground;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  img {
+    @apply max-w-full h-auto;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .page {
+    @apply w-full;
+  }
+
+  .page-layout {
+    width: min(calc(100% - 64px), 1440px);
+    margin-inline: auto;
+  }
+
+  .page-content {
+    @apply mx-auto w-full max-w-[800px];
+  }
+
+  .page-wide {
+    @apply mx-auto w-full max-w-[1440px] px-5 md:px-8 lg:px-10;
+  }
+
+  .section {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .section-tight {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  .section-loose {
+    @apply py-24 md:py-32 lg:py-40;
+  }
+
+  .section-content {
+    @apply flex flex-col gap-6 md:gap-8;
+  }
+
+  .section-header {
+    @apply flex flex-col gap-4 max-w-3xl;
+  }
+
+  .section-grid {
+    @apply grid gap-6 md:gap-8;
+  }
+
+  .section-grid-2 {
+    @apply grid gap-6 md:grid-cols-2 md:gap-8;
+  }
+
+  .section-grid-3 {
+    @apply grid gap-6 md:grid-cols-2 xl:grid-cols-3 md:gap-8;
+  }
+
+  .section-grid-4 {
+    @apply grid gap-6 md:grid-cols-2 xl:grid-cols-4 md:gap-8;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-layout {
+    width: min(calc(100% - 40px), 1440px);
+  }
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Disabled malformed legacy animation transfer. */
+/*
++@keyframes loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ambient-drift {
+  0%,
+  100% {
+    transform: scale(1) translate3d(0, 0, 0);
+    filter: saturate(1.08);
+  }
+  50% {
+    transform: scale(1.08) translate3d(-1.5%, 1%, 0);
+    filter: saturate(1.28);
+  }
+}
+
+@keyframes pixel-line-left {
+  from {
+    transform: translate3d(120%, 0, 0);
+    opacity: 0;
+  }
+  14% {
+    opacity: 0.95;
+  }
+  78% {
+    opacity: 0.72;
+  }
+  to {
+    transform: translate3d(-240%, 0, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes question-drift {
+  0% {
+    transform: translate3d(-50%, -50%, 0) translate(0, 0);
+  }
+  16% {
+    transform: translate3d(-50%, -50%, 0) translate(-18px, 11px);
+  }
+  31% {
+    transform: translate3d(-50%, -50%, 0) translate(14px, -15px);
+  }
+  47% {
+    transform: translate3d(-50%, -50%, 0) translate(24px, 8px);
+  }
+  63% {
+    transform: translate3d(-50%, -50%, 0) translate(-10px, -19px);
+  }
+  82% {
+    transform: translate3d(-50%, -50%, 0) translate(8px, 17px);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) translate(0, 0);
+  }
+}
+
+@keyframes underline-grow {
+  0%,
+  18% {
+    transform: scaleX(0);
+  }
+  52%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fin-phone-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes fin-panel-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.46;
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+    opacity: 0.72;
+  }
+}
+
+@keyframes fin-chat-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fin-user-pop {
+  0%,
+  38% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+  52%,
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fin-prompt-enter {
+  0%,
+  42% {
+    opacity: 0;
+    transform: translate(-50%, 24px);
+  }
+  58%,
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes fin-eq-pulse {
+  0%,
+  100% {
+    transform: scaleY(0.42);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 0.82;
+  }
+}
+
+@keyframes fin-glow-breathe {
+  0%,
+  100% {
+    opacity: 0.62;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes automation-gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    filter: saturate(1.05);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: saturate(1.28);
+  }
+}
+
+@keyframes backend-pill-lines {
+  from {
+    transform: translateX(-42%) rotate(0deg);
+  }
+  to {
+    transform: translateX(42%) rotate(360deg);
+  }
+}
+
+@keyframes backend-pill-gradient {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes chatgpt-type-line-one-loop {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  21.7%,
+  91% {
+    clip-path: inset(0 0 0 0);
+  }
+  91.1%,
+  100% {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+@keyframes chatgpt-type-line-two-loop {
+  0%,
+  23.3% {
+    clip-path: inset(0 100% 0 0);
+  }
+  39.2%,
+  91% {
+    clip-path: inset(0 0 0 0);
+  }
+  91.1%,
+  100% {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+@keyframes chatgpt-send-pulse {
+  0%,
+  72% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgb(0 0 0 / 0);
+  }
+  82% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 10px rgb(0 0 0 / 0.1);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgb(0 0 0 / 0);
+  }
+}
+
+@keyframes chatgpt-input-compact {
+  0%,
+  39.5% {
+    height: 7rem;
+    min-height: 7rem;
+    padding-top: 1rem;
+  }
+  45%,
+  91% {
+    height: 3.05rem;
+    min-height: 3.05rem;
+    padding-top: 0;
+  }
+  91.1%,
+  100% {
+    height: 7rem;
+    min-height: 7rem;
+    padding-top: 1rem;
+  }
+}
+
+@keyframes chatgpt-execution-reveal {
+  0%,
+  39.5% {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-color: rgb(255 255 255 / 0);
+    transform: translateY(16px);
+  }
+  45%,
+  70% {
+    max-height: 14rem;
+    opacity: 1;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-color: rgb(255 255 255 / 0.7);
+    transform: translateY(0);
+  }
+  76%,
+  91% {
+    max-height: 14rem;
+    opacity: 1;
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
+    border-color: rgb(255 255 255 / 0.7);
+    transform: translateY(0);
+  }
+  91.1%,
+  100% {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-color: rgb(255 255 255 / 0);
+    transform: translateY(16px);
+  }
+}
+
+@keyframes chatgpt-execution-task-one-loop {
+  0%,
+  48.5% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  52%,
+  72% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  78%,
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes chatgpt-execution-task-two-loop {
+  0%,
+  53.5% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  57%,
+  72% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  78%,
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes chatgpt-execution-task-three-loop {
+  0%,
+  58.5% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  62%,
+  72% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  78%,
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes chatgpt-task-loader-one-loop {
+  0%,
+  59% {
+    opacity: 1;
+  }
+  61%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes chatgpt-task-loader-two-loop {
+  0%,
+  64% {
+    opacity: 1;
+  }
+  66%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes chatgpt-task-loader-three-loop {
+  0%,
+  69% {
+    opacity: 1;
+  }
+  71%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes chatgpt-task-check-one-loop {
+  0%,
+  59% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+  61%,
+  72% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  78%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes chatgpt-task-check-two-loop {
+  0%,
+  64% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+  66%,
+  72% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  78%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes chatgpt-task-check-three-loop {
+  0%,
+  69% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+  71%,
+  72% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  78%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes chatgpt-execution-collapse {
+  0%,
+  72% {
+    max-height: 11rem;
+    opacity: 1;
+  }
+  78%,
+  100% {
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes chatgpt-execution-active-title {
+  0%,
+  73% {
+    opacity: 1;
+  }
+  78%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes chatgpt-execution-complete-title {
+  0%,
+  73% {
+    opacity: 0;
+  }
+  78%,
+  91% {
+    opacity: 1;
+  }
+  91.1%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.pixel-line {
+  position: absolute;
+  top: var(--line-top);
+  left: var(--line-left);
+  width: var(--line-width);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.95), transparent);
+  box-shadow: 0 0 10px rgb(255 255 255 / 0.2);
+  animation: pixel-line-left var(--line-duration) linear infinite;
+  animation-delay: var(--line-delay);
+}
+
+.question-drift {
+  animation: question-drift 3.4s ease-in-out infinite;
+}
+
+.techsaws-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.16em;
+  height: 2px;
+  border-radius: 999px;
+  background: rgb(255 255 255);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: underline-grow 2.2s ease-in-out infinite;
+}
+
+.fin-console-glow {
+  background:
+    radial-gradient(circle at 50% 50%, rgb(37 99 235 / 0.12), transparent 34%),
+    radial-gradient(circle at 50% 50%, rgb(2 8 23 / 0) 0 22%, rgb(2 8 23 / 0.84) 66%);
+  animation: fin-glow-breathe 5.4s ease-in-out infinite;
+}
+
+.fin-agent-phone {
+  animation: fin-phone-float 5.2s ease-in-out infinite;
+}
+
+.fin-dashboard-panel {
+  animation: fin-panel-drift 6.5s ease-in-out infinite;
+}
+
+.fin-chat-card {
+  opacity: 0;
+  animation: fin-chat-rise 850ms ease-out forwards;
+}
+
+.fin-chat-card-one {
+  animation-delay: 300ms;
+}
+
+.fin-user-bubble {
+  opacity: 0;
+  animation: fin-user-pop 2.2s ease-out forwards;
+}
+
+.fin-chat-card-two {
+  animation-delay: 1.35s;
+}
+
+.fin-prompt-bar {
+  opacity: 0;
+  animation: fin-prompt-enter 2.8s ease-out forwards;
+}
+
+.fin-eq-bar {
+  transform-origin: bottom;
+  animation: fin-eq-pulse 1.4s ease-in-out infinite;
+}
+
+.fin-prompt-text,
+.fin-message-placeholder {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.automation-hero-gradient {
+  background:
+    radial-gradient(circle at 18% 22%, rgb(37 99 235 / 0.72), transparent 34%),
+    radial-gradient(circle at 76% 16%, rgb(16 185 129 / 0.42), transparent 32%),
+    radial-gradient(circle at 54% 80%, rgb(99 102 241 / 0.5), transparent 36%),
+    linear-gradient(120deg, #020617, #07111f, #050816, #001c1b);
+  background-size: 160% 160%;
+  animation: automation-gradient-shift 9s ease-in-out infinite;
+}
+
+.backend-hero-pill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(110deg, rgb(59 130 246), rgb(34 211 238), rgb(16 185 129), rgb(255 255 255), rgb(59 130 246));
+  background-size: 240% 240%;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: backend-pill-gradient 5.8s ease-in-out infinite;
+}
+
+.backend-hero-pill-line {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background:
+    linear-gradient(90deg, transparent 0 12%, rgb(59 130 246 / 0.9) 16%, transparent 23%),
+    linear-gradient(90deg, transparent 0 34%, rgb(34 211 238 / 0.8) 38%, transparent 45%),
+    linear-gradient(90deg, transparent 0 58%, rgb(16 185 129 / 0.72) 62%, transparent 69%),
+    linear-gradient(90deg, transparent 0 78%, rgb(255 255 255 / 0.78) 82%, transparent 88%);
+  background-size: 220% 100%;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.95;
+  animation: backend-pill-gradient 3.8s linear infinite;
+}
+
+.chatgpt-composer {
+  transform: translateZ(0);
+}
+
+.chatgpt-input-field {
+  height: 7rem;
+  overflow: hidden;
+  animation: chatgpt-input-compact 12s ease-in-out infinite;
+}
+
+.chatgpt-typed-line {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid transparent;
+  clip-path: inset(0 100% 0 0);
+}
+
+.chatgpt-typed-line-1 {
+  animation: chatgpt-type-line-one-loop 12s steps(61, end) infinite;
+}
+
+.chatgpt-typed-line-2 {
+  animation: chatgpt-type-line-two-loop 12s steps(39, end) infinite;
+}
+
+.chatgpt-send {
+  opacity: 1;
+  animation:
+    chatgpt-send-pulse 2s ease-in-out infinite;
+  animation-delay: 5.15s;
+}
+
+.chatgpt-execution-panel {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  animation: chatgpt-execution-reveal 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-spinner {
+  animation:
+    loader-spin 1s linear infinite,
+    chatgpt-execution-active-title 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-title {
+  animation: chatgpt-execution-active-title 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-done-icon,
+.chatgpt-execution-complete-title {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: chatgpt-execution-complete-title 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-complete-title {
+  left: 2rem;
+}
+
+.chatgpt-execution-tasks {
+  max-height: 11rem;
+  overflow: hidden;
+  animation: chatgpt-execution-collapse 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-task {
+  opacity: 0;
+}
+
+.chatgpt-execution-task-1 {
+  animation: chatgpt-execution-task-one-loop 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-task-2 {
+  animation: chatgpt-execution-task-two-loop 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-task-3 {
+  animation: chatgpt-execution-task-three-loop 12s ease-in-out infinite;
+}
+
+.chatgpt-task-loader {
+  animation: loader-spin 820ms linear infinite;
+}
+
+.chatgpt-task-check {
+  opacity: 0;
+}
+
+.chatgpt-execution-task-1 .chatgpt-task-loader {
+  animation:
+    loader-spin 820ms linear infinite,
+    chatgpt-task-loader-one-loop 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-task-2 .chatgpt-task-loader {
+  animation:
+    loader-spin 820ms linear infinite,
+    chatgpt-task-loader-two-loop 12s ease-in-out infinite;
+}
+}
+  animation:
+    loader-spin 820ms linear infinite,
+    chatgpt-task-loader-two-loop 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-task-3 .chatgpt-task-loader {
+  animation:
+    loader-spin 820ms linear infinite,
+    chatgpt-task-loader-three-loop 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-task-1 .chatgpt-task-check {
+  animation: chatgpt-task-check-one-loop 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-task-2 .chatgpt-task-check {
+  animation: chatgpt-task-check-two-loop 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-task-3 .chatgpt-task-check {
+  animation: chatgpt-task-check-three-loop 12s ease-in-out infinite;
+}
+  animation:
+    loader-spin 820ms linear infinite,
+    chatgpt-task-loader-two-loop 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-task-3 .chatgpt-task-loader {
+  animation:
+    loader-spin 820ms linear infinite,
+    chatgpt-task-loader-three-loop 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-task-1 .chatgpt-task-check {
+  animation: chatgpt-task-check-one-loop 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-task-2 .chatgpt-task-check {
+  animation: chatgpt-task-check-two-loop 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-task-3 .chatgpt-task-check {
+  animation: chatgpt-task-check-three-loop 12s ease-in-out infinite;
+}
+
+.hero-ambient-bg {
+  animation: ambient-drift 9s ease-in-out infinite;
+  transform-origin: center;
+}
+
+  .hero-cursor-layer {
+    --cursor-opacity: 0;
+    transition: opacity 220ms ease;
+  }
+  
+  .hero-cursor-dot {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0.62rem;
+    height: 0.62rem;
+    border-radius: 999px;
+    background: rgb(255 255 255);
+    opacity: var(--cursor-opacity);
+    transform: translate3d(50vw, 50vh, 0) translate(-50%, -50%);
+    box-shadow:
+      0 0 0 1px rgb(255 255 255 / 0.18),
+      0 0 18px rgb(255 255 255 / 0.38);
+    transition: opacity 160ms ease;
+    will-change: transform;
+  }
+
+  .hero-cursor-dot::before,
+  .hero-cursor-dot::after {
+    content: none;
+  }
+
+.workflow-pill {
+  background: rgb(39 39 42 / 12%);
+  color: rgb(24 24 27);
+}
+
+.workflow-input-button {
+  background: transparent;
+  color: rgb(63 63 70);
+  transition:
++    background-color 650ms ease,
+    color 650ms ease;
+}
+
+.workflow-send-button {
+  background: rgb(15 134 255);
+  color: rgb(255 255 255);
+  transition:
+    background-color 650ms ease,
+    color 650ms ease;
+}
+
+.workflow-instant,
+.workflow-mic {
+  color: rgb(113 113 122);
+}
+
+.hero-intro > * {
+  animation: hero-rise 700ms ease-out both;
+}
+
+.hero-intro > :nth-child(2) {
+  animation-delay: 100ms;
+}
+
+.hero-intro > :nth-child(3) {
+  animation-delay: 190ms;
+}
+
+.hero-intro > :nth-child(4) {
+  animation-delay: 310ms;
+}
+
+.workflow-card-one {
+  animation: hero-rise 720ms ease-out both;
+  animation-delay: 420ms;
+}
+
+.workflow-card-two {
+  background: rgb(244 244 245);
+  border-color: rgb(212 212 216 / 70%);
+  color: rgb(24 24 27);
+  height: 3.3rem;
+  overflow: hidden;
+  animation: chat-input-sequence 4.9s ease-in-out both;
+  animation-delay: 760ms;
+}
+
+.workflow-input-content {
+  min-height: 5.05rem;
+}
+
+.execution-label-active {
+  color: rgb(24 24 27);
+}
+
+.workflow-card-three {
+  max-height: 132px;
+  overflow: hidden;
+  animation:
+    completion-card 5.8s ease-out both,
+    task-card-complete-shrink 8.15s ease-out both;
+}
+
+.workflow-card-one svg {
+  animation: workflow-check 1.6s ease-out both;
+  animation-delay: 1.3s;
+}
+
+.chat-typed {
+  min-width: 0;
+  padding-top: 0;
+  padding-bottom: 0.45rem;
+}
+
+.chat-typed-line {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+}
+
+.chat-typed-line-one {
+  --typing-width: 24.5rem;
+  animation: reveal-inline 1.35s steps(58, end) both;
+  animation-delay: 1.15s;
+}
+
+.chat-typed-line-two {
+  --typing-width: 28.25rem;
+  animation: reveal-inline 1.35s steps(43, end) both;
+  animation-delay: 2.62s;
+}
+
+.instagram-brand-icon {
+  display: inline-flex;
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-right: 0.25rem;
+  vertical-align: -0.16rem;
+  border-radius: 0.35rem;
+  background:
+    radial-gradient(circle at 32% 100%, #fed373 0 18%, transparent 32%),
+    radial-gradient(circle at 20% 115%, #f15245 0 34%, transparent 48%),
+    radial-gradient(circle at 92% 12%, #4f5bd5 0 30%, transparent 48%),
+    linear-gradient(135deg, #833ab4, #fd1d1d 52%, #fcb045);
+  position: relative;
+}
+
+.instagram-brand-icon::before {
+  content: "";
+  position: absolute;
+  inset: 0.26rem;
+  border: 1.5px solid white;
+  border-radius: 0.22rem;
+}
+
+.instagram-brand-icon::after {
+  content: "";
+  position: absolute;
+  width: 0.2rem;
+  height: 0.2rem;
+  right: 0.3rem;
+  top: 0.3rem;
+  border-radius: 999px;
+  background: white;
+  box-shadow: -0.23rem 0.23rem 0 0.08rem transparent;
+}
+
+.workflow-card-two:is(.workflow-card-two) .workflow-input-button {
+  animation:
+    input-control-shift 4.9s ease-in-out both,
+    composer-control-row 4.9s ease-in-out both;
+  animation-delay: 760ms, 760ms;
+}
+
+.workflow-card-two:is(.workflow-card-two) .workflow-send-button {
+  animation:
+    send-control-shift 4.9s ease-in-out both,
+    composer-control-row 4.9s ease-in-out both;
+  animation-delay: 760ms, 760ms;
+}
+
+.workflow-card-two:is(.workflow-card-two) .workflow-instant,
+.workflow-card-two:is(.workflow-card-two) .workflow-mic {
+  animation:
+    input-control-shift 4.9s ease-in-out both,
+    composer-control-row 4.9s ease-in-out both;
+  animation-delay: 760ms, 760ms;
+}
+
+.completion-text {
+  --typing-width: 8.25rem;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: reveal-inline 850ms steps(18, end) both;
+  animation-delay: 5.35s;
+}
+
+.execution-step {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  opacity: 0;
+}
+
+.execution-steps {
+  overflow: hidden;
+  animation: execution-steps-collapse 8.15s ease-out both;
+}
+
+.execution-step-one {
+  animation: execution-step 420ms ease-out both;
+  animation-delay: 6.15s;
+}
+
+.execution-step-two {
+  animation: execution-step 420ms ease-out both;
+  animation-delay: 6.8s;
+}
+
+.execution-step-three {
+  animation: execution-step 420ms ease-out both;
+  animation-delay: 7.45s;
+}
+
+.execution-done-icon,
+.execution-label-done {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.execution-spinner {
+  animation:
+    loader-spin 1s linear infinite,
+    execution-title-hide 7.95s ease-out both;
+}
+
+.execution-label-active {
+  color: rgb(24 24 27);
+  animation:
+    reveal-inline 850ms steps(18, end) both,
+    execution-title-hide 7.95s ease-out both;
+  animation-delay: 5.35s, 0s;
+}
+
+.execution-done-icon,
+.execution-label-done {
+  animation: execution-title-complete 8.05s ease-out both;
+}
+
+.execution-done-icon {
+  left: 0;
+}
+
+.execution-label-done {
+  left: 2rem;
+}
+
+.workflow-thanks {
+  animation: hero-rise 700ms ease-out both;
+  animation-delay: 8.3s;
+}
+*/
+
+@keyframes automation-gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes pixel-line-left {
+  from { transform: translate3d(120%, 0, 0); opacity: 0; }
+  14% { opacity: .95; }
+  78% { opacity: .72; }
+  to { transform: translate3d(-240%, 0, 0); opacity: 0; }
+}
+
+@keyframes question-drift {
+  0%, 100% { transform: translate3d(-50%, -50%, 0); }
+  50% { transform: translate3d(-50%, -50%, 0) translate(18px, -14px); }
+}
+
+.automation-hero-gradient {
+  background: radial-gradient(circle at 18% 22%, rgb(37 99 235 / .72), transparent 34%), radial-gradient(circle at 76% 16%, rgb(16 185 129 / .42), transparent 32%), radial-gradient(circle at 54% 80%, rgb(99 102 241 / .5), transparent 36%), linear-gradient(120deg, #020617, #07111f, #050816, #001c1b);
+  background-size: 160% 160%;
+  animation: automation-gradient-shift 9s ease-in-out infinite;
+}
+
+.pixel-line {
+  position: absolute;
+  top: var(--line-top);
+  left: var(--line-left);
+  width: var(--line-width);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / .95), transparent);
+  box-shadow: 0 0 10px rgb(255 255 255 / .2);
+  animation: pixel-line-left var(--line-duration) linear infinite;
+  animation-delay: var(--line-delay);
+}
+
+.question-drift { animation: question-drift 3.4s ease-in-out infinite; }
+
+.techsaws-underline::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -.16em;
+  left: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: #fff;
+}
+@keyframes chatgpt-type-line-one-loop {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  21.7%,
+  91% {
+    clip-path: inset(0 0 0 0);
+  }
+  91.1%,
+  100% {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+@keyframes chatgpt-type-line-two-loop {
+  0%,
+  23.3% {
+    clip-path: inset(0 100% 0 0);
+  }
+  39.2%,
+  91% {
+    clip-path: inset(0 0 0 0);
+  }
+  91.1%,
+  100% {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+@keyframes chatgpt-send-pulse {
+  0%,
+  72% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgb(0 0 0 / 0);
+  }
+  82% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 10px rgb(0 0 0 / 0.1);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgb(0 0 0 / 0);
+  }
+}
+
+@keyframes chatgpt-input-compact {
+  0%,
+  39.5% {
+    height: 7rem;
+    min-height: 7rem;
+    padding-top: 1rem;
+  }
+  45%,
+  91% {
+    height: 3.05rem;
+    min-height: 3.05rem;
+    padding-top: 0;
+  }
+  91.1%,
+  100% {
+    height: 7rem;
+    min-height: 7rem;
+    padding-top: 1rem;
+  }
+}
+
+@keyframes chatgpt-execution-reveal {
+  0%,
+  39.5% {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-color: rgb(255 255 255 / 0);
+    transform: translateY(16px);
+  }
+  45%,
+  70% {
+    max-height: 14rem;
+    opacity: 1;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-color: rgb(255 255 255 / 0.7);
+    transform: translateY(0);
+  }
+  76%,
+  91% {
+    max-height: 14rem;
+    opacity: 1;
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
+    border-color: rgb(255 255 255 / 0.7);
+    transform: translateY(0);
+  }
+  91.1%,
+  100% {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-color: rgb(255 255 255 / 0);
+    transform: translateY(16px);
+  }
+}
+
+@keyframes chatgpt-execution-task-one-loop {
+  0%,
+  48.5% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  52%,
+  72% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  78%,
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes chatgpt-execution-task-two-loop {
+  0%,
+  53.5% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  57%,
+  72% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  78%,
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes chatgpt-execution-task-three-loop {
+  0%,
+  58.5% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  62%,
+  72% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  78%,
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes chatgpt-task-loader-one-loop {
+  0%,
+  59% {
+    opacity: 1;
+  }
+  61%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes chatgpt-task-loader-two-loop {
+  0%,
+  64% {
+    opacity: 1;
+  }
+  66%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes chatgpt-task-loader-three-loop {
+  0%,
+  69% {
+    opacity: 1;
+  }
+  71%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes chatgpt-task-check-one-loop {
+  0%,
+  59% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+  61%,
+  72% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  78%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes chatgpt-task-check-two-loop {
+  0%,
+  64% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+  66%,
+  72% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  78%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes chatgpt-task-check-three-loop {
+  0%,
+  69% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+  71%,
+  72% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  78%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes chatgpt-execution-collapse {
+  0%,
+  72% {
+    max-height: 11rem;
+    opacity: 1;
+  }
+  78%,
+  100% {
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes chatgpt-execution-active-title {
+  0%,
+  73% {
+    opacity: 1;
+  }
+  78%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes chatgpt-execution-complete-title {
+  0%,
+  73% {
+    opacity: 0;
+  }
+  78%,
+  91% {
+    opacity: 1;
+  }
+  91.1%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.pixel-line {
+  position: absolute;
+  top: var(--line-top);
+  left: var(--line-left);
+  width: var(--line-width);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / .95), transparent);
+  box-shadow: 0 0 10px rgb(255 255 255 / .2);
+  animation: pixel-line-left var(--line-duration) linear infinite;
+  animation-delay: var(--line-delay);
+}
+
+.automation-hero-gradient {
+  background:
+    radial-gradient(circle at 18% 22%, rgb(37 99 235 / 0.72), transparent 34%),
+    radial-gradient(circle at 76% 16%, rgb(16 185 129 / 0.42), transparent 32%),
+    radial-gradient(circle at 54% 80%, rgb(99 102 241 / 0.5), transparent 36%),
+    linear-gradient(120deg, #020617, #07111f, #050816, #001c1b);
+  background-size: 160% 160%;
+  animation: automation-gradient-shift 9s ease-in-out infinite;
+}
+
+.backend-hero-pill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(110deg, rgb(59 130 246), rgb(34 211 238), rgb(16 185 129), rgb(255 255 255), rgb(59 130 246));
+  background-size: 240% 240%;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: backend-pill-gradient 5.8s ease-in-out infinite;
+}
+
+.backend-hero-pill-line {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background:
+    linear-gradient(90deg, transparent 0 12%, rgb(59 130 246 / 0.9) 16%, transparent 23%),
+    linear-gradient(90deg, transparent 0 34%, rgb(34 211 238 / 0.8) 38%, transparent 45%),
+    linear-gradient(90deg, transparent 0 58%, rgb(16 185 129 / 0.72) 62%, transparent 69%),
+    linear-gradient(90deg, transparent 0 78%, rgb(255 255 255 / 0.78) 82%, transparent 88%);
+  background-size: 220% 100%;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.95;
+  animation: backend-pill-gradient 3.8s linear infinite;
+}
+
+.chatgpt-composer {
+  transform: translateZ(0);
+}
+
+.chatgpt-input-field {
+  height: 7rem;
+  overflow: hidden;
+  animation: chatgpt-input-compact 12s ease-in-out infinite;
+}
+
+.chatgpt-typed-line {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid transparent;
+  clip-path: inset(0 100% 0 0);
+}
+
+.chatgpt-typed-line-1 {
+  animation: chatgpt-type-line-one-loop 12s steps(61, end) infinite;
+}
+
+.chatgpt-typed-line-2 {
+  animation: chatgpt-type-line-two-loop 12s steps(39, end) infinite;
+}
+
+.chatgpt-send {
+  opacity: 1;
+  animation:
+    chatgpt-send-pulse 2s ease-in-out infinite;
+  animation-delay: 5.15s;
+}
+
+.chatgpt-execution-panel {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  animation: chatgpt-execution-reveal 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-spinner {
+  animation:
+    loader-spin 1s linear infinite,
+    chatgpt-execution-active-title 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-title {
+  animation: chatgpt-execution-active-title 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-done-icon,
+.chatgpt-execution-complete-title {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: chatgpt-execution-complete-title 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-complete-title {
+  left: 2rem;
+}
+
+.chatgpt-execution-tasks {
+  max-height: 11rem;
+  overflow: hidden;
+  animation: chatgpt-execution-collapse 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-task {
+  opacity: 0;
+}
+
+.chatgpt-execution-task-1 {
+  animation: chatgpt-execution-task-one-loop 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-task-2 {
+  animation: chatgpt-execution-task-two-loop 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-task-3 {
+  animation: chatgpt-execution-task-three-loop 12s ease-in-out infinite;
+}
+
+.chatgpt-task-loader {
+  animation: loader-spin 820ms linear infinite;
+}
+
+.chatgpt-task-check {
+  opacity: 0;
+}
+
+.chatgpt-execution-task-1 .chatgpt-task-loader {
+  animation:
+    loader-spin 820ms linear infinite,
+    chatgpt-task-loader-one-loop 12s ease-in-out infinite;
+}
+
+.chatgpt-execution-task-2 .chatgpt-task-loader {
+  animation:
+    loader-spin 820ms linear infinite,
+    chatgpt-task-loader-two-loop 12s ease-in-out infinite;
+}
